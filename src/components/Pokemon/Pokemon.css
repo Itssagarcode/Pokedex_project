@@ -1,0 +1,31 @@
+.pokemon{
+    flex-basis: 25%;
+    width:300px ;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.pokemon-img{
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    height: 200px;
+   max-height: 100%; 
+   transition: transform 1.5s;
+   cursor: pointer;
+}
+.pokemon-img:hover{
+    transform: scale(1.5);
+    filter: invert(1%);
+}
+.pokemon h2{
+   letter-spacing: 0.4rem;
+   transition: transform 1.5s; 
+   cursor: pointer;
+}
+.pokemon h2:hover{
+    transform: scale(1.5);
+    
+
+}
