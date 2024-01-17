@@ -24,6 +24,10 @@
    transition: transform 1.5s; 
    cursor: pointer;
 }
+a{
+    text-decoration: none;
+    color: black;
+}
 .pokemon h2:hover{
     transform: scale(1.5);
     

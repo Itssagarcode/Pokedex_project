@@ -47,6 +47,20 @@ body {
  
   background-color: #e18282;
 }
+#heading{
+  margin: 0 auto;
+  letter-spacing: 12px;
+
+}
+#heading a{
+  text-decoration: none;
+  color: black;
+}
+.App{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 
 

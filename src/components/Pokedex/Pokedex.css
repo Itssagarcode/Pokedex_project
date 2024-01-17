@@ -2,7 +2,3 @@
 display: flex;
 flex-direction: column;
 }
-#heading{
-    margin: 0 auto;
-    letter-spacing: 12px;
-}
