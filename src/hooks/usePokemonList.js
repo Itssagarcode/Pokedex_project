@@ -1,27 +1,35 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-function usePokemonList(){
+function usePokemonList(type){
     const [pokemonListState, setPokemonListState] = useState({
         PokemonList: [],
         isLoading: true,
-        pokedexUrl: "https://pokeapi.co/api/v2/pokemon",
+        pokedexUrl: 'https://pokeapi.co/api/v2/pokemon',
         nextUrl: "",
         prevUrl: "",
       });
 
       async function downloadsPokemons() {
 
-        setPokemonListState((state) =>({ ...state, isLoading: true }));
-        const response = await axios.get(pokemonListState.pokedexUrl); //this download
-        const pokemonResults = response.data.results; // we get the array of pokemons
-    
-        console.log(response.data);
-        setPokemonListState((state) =>({
-          ...state,
-          nextUrl: response.data.next,
-          prevUrl: response.data.previous,
-        }));
+
+        // iterating over the array of pokemons, and usin their url, to create an array of promises
+        // that will download those 20 pokemons
+
+
+          setPokemonListState((state) =>({ ...state, isLoading: true }));
+          const response = await axios.get(pokemonListState.pokedexUrl); //this download
+          const pokemonResults = response.data.results; // we get the array of pokemons
+      
+          console.log(response.data);
+          setPokemonListState((state) =>({
+            ...state,
+            nextUrl: response.data.next,
+            prevUrl: response.data.previous,
+          }));
+
+        
         const pokemonResultPromise = pokemonResults.map((pokemon) => axios.get(pokemon.url));
+        // now iterate on the data of each pokemon , and extract id , name, types
         const pokemonData = await axios.all(pokemonResultPromise);
               console.log(pokemonData)
         const pokeListResult = pokemonData.map((pokeData) => {
@@ -41,12 +49,13 @@ function usePokemonList(){
           PokemonList: pokeListResult,
           isLoading: false,
         }));
+    
       }
 
       useEffect(() =>{
         downloadsPokemons()
       },[pokemonListState.pokedexUrl])
 
-      return{pokemonListState,setPokemonListState}
+      return[pokemonListState,setPokemonListState]
 }
 export default usePokemonList;

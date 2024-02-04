@@ -1,12 +1,13 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+
 import "./PokemonList.css";
 import Pokemon from "../Pokemon/Pokemon";
 import usePokemonList from "../../hooks/usePokemonList";
+
 const PokemonList = () => {
  
 
-  const {pokemonListState,setPokemonListState} = usePokemonList()
+  const [pokemonListState,setPokemonListState] = usePokemonList( false)
  
   return (
     <div className="pokemon-list-wrapper">
