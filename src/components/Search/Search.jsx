@@ -1,11 +1,20 @@
-import React from 'react'
-import './search.css'
-const Search = () => {
-  return (
-    <div className='search-wrapper'>
-      <input id='pokemon-name-search' type="text" placeholder='Pokemon name'/>
-    </div>
-  )
-}
+import React, { useState } from "react";
+import "./search.css";
+import useDebounce from "../../hooks/useDebounce";
+const Search = ({updateSearchTerm}) => {
 
-export default Search
+const debouncedCallback = useDebounce((e) => updateSearchTerm(e.target.value))
+  return (
+    <div className="search-wrapper">
+      <input
+        id="pokemon-name-search"
+        type="text"
+        placeholder="Pokemon name"
+        onChange={debouncedCallback}
+      />
+      
+    </div>
+  );
+};
+
+export default Search;
